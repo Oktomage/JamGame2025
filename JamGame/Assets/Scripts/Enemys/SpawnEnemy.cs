@@ -30,8 +30,8 @@ public class SpawnEnemy : MonoBehaviour
         else if (Cooldown_ <= 0 )
         {
 
-            Instantiate(Level1_Formiga[Random.Range(-0, Level1_Formiga.Count)], new Vector3(-9, Random.Range(12f, -12f), 0), Quaternion.identity);
-            Instantiate(Level1_Formiga[Random.Range(0, Level1_Formiga.Count)], new Vector3(9, Random.Range(-12f, 12f), 0), Quaternion.identity);
+            Instantiate(Level1_Formiga[Random.Range(-0, Level1_Formiga.Count)], new Vector3(-9, Random.Range(1.2f, -12f), 0), Quaternion.identity);
+            Instantiate(Level1_Formiga[Random.Range(0, Level1_Formiga.Count)], new Vector3(9, Random.Range(-12f, 1.2f), 0), Quaternion.identity);
             Cooldown_ = Value_Cooldown;
         }
 
