@@ -1,65 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class FormigaBehaviour : MonoBehaviour
+
 {
-    public float Move_Speed;
+    public GameObject atackWarning;
+    EntityStats entity;
 
-    EntityStats entityStats;
 
-    GameObject Arvore_obj;
 
-    ArvoreStats arvore;
-
-    public GameObject Arvore_Devdd;
 
     private void Start()
     {
-        arvore = gameObject.GetComponent<ArvoreStats>();
-
-        entityStats = gameObject.GetComponent<EntityStats>();
-
-        Arvore_obj = GameObject.FindGameObjectWithTag("Arvore");
-
+        entity = gameObject.GetComponent<EntityStats>();
     }
 
-    void AtacckFormiga()
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
-        transform.position = Vector3.MoveTowards(transform.position, Arvore_obj.transform.position, Move_Speed * Time.deltaTime);
-
-
-
-        float Dist = Vector2.Distance(transform.position, Arvore_obj.transform.position);
-
-        if (Dist < 1.3f)
+        while (entity.Hp_ > 0 )
         {
-            arvore.Arvore_HP -= entityStats.Atack_Damage;
-            
-        }
-        else
-        {
-                //nADA ACONTECE
+            if (collision.CompareTag("Arvore"))
+            {
+                ArvoreStatsHP arvore = collision.GetComponent<ArvoreStatsHP>();
+
+                if (arvore != null)
+                {
+                    arvore.Hp_Arvore -= entity.Atack_Damage;
+
+                    if (atackWarning != null)
+                        atackWarning.SetActive(true);
+                }
+            }
         }
 
-
-
+     
     }
 
-
-
-    private void FixedUpdate()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        AtacckFormiga();
+        if (collision.CompareTag("Arvore") && atackWarning != null)
+        {
+            atackWarning.SetActive(false);
+        }
     }
-
-   
-
-
-
-
-
-
 }
+
+
+
