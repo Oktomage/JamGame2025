@@ -13,7 +13,7 @@ public class EnemyMove : MonoBehaviour
 
     private void Start()
     {
-        Arvore_obj = GameObject.FindGameObjectWithTag("Arvore");
+        Arvore_obj = GameObject.FindGameObjectWithTag("Alvo");
     }
 
     void moveEnemy()
