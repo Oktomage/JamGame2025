@@ -21,7 +21,7 @@ public class FormigaBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        while (entity.Hp_ > 0 )
+    
         {
             if (collision.CompareTag("Arvore"))
             {
