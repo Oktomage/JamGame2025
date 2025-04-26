@@ -12,6 +12,8 @@ namespace Game.Humanoids
         public float Health;
         public float MaxHealth;
         public float MoveSpeed;
+        public float Exp;
+        public int Level;
 
         //Components
         public Rigidbody2D Rigidbody { get; internal set; }
@@ -28,6 +30,8 @@ namespace Game.Humanoids
             MaxHealth = 10;
             Health = MaxHealth;
             MoveSpeed = 3;
+            Exp = 0;
+            Level = 1;
         }
 
         private void Start()
@@ -46,6 +50,25 @@ namespace Game.Humanoids
             if(Health <= 0)
             {
                 Destroy(this.gameObject);
+            }
+        }
+
+        private void Level_up()
+        {
+            //Set
+            Level += 1;
+        }
+
+        internal void Gain_exp(float xp)
+        {
+            //Set
+            Exp -= xp;
+
+            if(Exp >= 100)
+            {
+                Exp -= 100;
+
+                Level_up();
             }
         }
 

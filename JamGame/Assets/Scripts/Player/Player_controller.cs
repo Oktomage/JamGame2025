@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Humanoids;
 using Game.Audios;
+using Game.Events;
 
 namespace Game.Player
 {
@@ -11,16 +12,23 @@ namespace Game.Player
     {
         internal Humanoid humanoid;
 
+        private bool Can_move;
+        private bool Dancing;
+
         private void Awake()
         {
             //Get
             humanoid = this.gameObject.GetComponent<Humanoid>();
+
+            //Set
+            Can_move = true;
+            Dancing = false;
         }
 
         private void Update()
         {
             //Move
-            if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && humanoid.Rigidbody != null)
+            if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && humanoid.Rigidbody != null && Can_move)
             {
                 Move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
             }
@@ -29,6 +37,12 @@ namespace Game.Player
             if(Input.GetMouseButtonDown(0))
             {
                 Melee_wimp_attack(1, 2, 1);
+            }
+
+            //Specials
+            else if (Input.GetKeyDown(KeyCode.F) && !Dancing)
+            {
+                StartCoroutine(Rain_dance());
             }
         }
 
@@ -82,6 +96,23 @@ namespace Game.Player
 
             //Audio
             Audio_controller.Play_audio("Basic Attack");
+        }
+
+        private IEnumerator Rain_dance()
+        {
+            //Set
+            Can_move = false;
+            Dancing = true;
+
+            Events_controller.Rain_dance_event.Invoke();
+
+            humanoid.Rigidbody.velocity = Vector2.zero;
+
+            yield return new WaitForSeconds(3);
+
+            //Set
+            Can_move = true;
+            Dancing = false;
         }
 
         #endregion

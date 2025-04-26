@@ -224,6 +224,8 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 0
   MoveSpeed: 0
+  Exp: 0
+  Level: 0
 --- !u!61 &468297188
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -411,6 +413,8 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 0
   MoveSpeed: 6
+  Exp: 0
+  Level: 0
 --- !u!50 &512405856
 Rigidbody2D:
   serializedVersion: 4
@@ -623,7 +627,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 7482667652216324306, guid: d6201d0f9446316448e1f170359a3f78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6201d0f9446316448e1f170359a3f78, type: 3}
   m_Color: {r: 0.5471698, g: 0.46514714, b: 0.04903879, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -761,6 +765,7 @@ GameObject:
   - component: {fileID: 2028323153}
   - component: {fileID: 2028323157}
   - component: {fileID: 2028323156}
+  - component: {fileID: 2028323159}
   - component: {fileID: 2028323158}
   m_Layer: 0
   m_Name: Main Camera
@@ -916,6 +921,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ac9759a702fdf4db5a6b7e1e90ea0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2028323159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028323152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1def6d9fad018a4090b8c7d025fe0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Raining_time: 15
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
