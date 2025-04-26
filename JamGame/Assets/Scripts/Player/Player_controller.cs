@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Humanoids;
+using Game.Audios;
 
 namespace Game.Player
 {
@@ -78,6 +79,9 @@ namespace Game.Player
             {
                 Humanoids_in_range[i].Take_damage(attack_damage);
             }
+
+            //Audio
+            Audio_controller.Play_audio("Basic Attack");
         }
 
         #endregion

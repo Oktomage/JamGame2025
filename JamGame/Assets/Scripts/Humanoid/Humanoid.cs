@@ -1,3 +1,4 @@
+using Game.HUD;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Game.Humanoids
 
         //Components
         public Rigidbody2D Rigidbody { get; internal set; }
-
+        internal Health_bar health_bar;
 
         private void Awake()
         {
@@ -22,12 +23,39 @@ namespace Game.Humanoids
             {
                 Rigidbody = rb;
             }
+
+            //Set
+            MaxHealth = 10;
+            Health = MaxHealth;
+            MoveSpeed = 3;
+        }
+
+        private void Start()
+        {
+            if (!health_bar)
+            {
+                Create_health_bar();
+            }
         }
 
         internal void Take_damage(float dmg)
         {
             //Set
             Health -= dmg;
+
+            if(Health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
+        internal void Create_health_bar()
+        {
+            //Set
+            GameObject htlh_bar = Instantiate(Resources.Load("Prefabs/Health_bar"), Vector2.zero, Quaternion.identity) as GameObject;
+            health_bar = htlh_bar.GetComponent<Health_bar>();
+
+            health_bar.Configure(this);
         }
     }
 }
