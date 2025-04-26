@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EntityStats : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EntityStats : MonoBehaviour
     public float Hp_Max;
 
 
-
+    public float move_cabrito;
 
     private void Start()
     {
