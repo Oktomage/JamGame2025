@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9157500348725046892
+--- !u!1 &4727995862593462671
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2305684702197035753}
-  - component: {fileID: 1627177908658966495}
-  - component: {fileID: 3161581355125295122}
-  - component: {fileID: 5851847413184567353}
-  - component: {fileID: 7810985894488677007}
+  - component: {fileID: 7237424124546536141}
+  - component: {fileID: 8681870959701151546}
+  - component: {fileID: 5594750369542463122}
+  - component: {fileID: 497797191723492752}
   m_Layer: 0
-  m_Name: Rabbity
-  m_TagString: Coelho
+  m_Name: Snack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2305684702197035753
+--- !u!4 &7237424124546536141
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157500348725046892}
+  m_GameObject: {fileID: 4727995862593462671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.32, y: -0.207, z: 0}
-  m_LocalScale: {x: 0.30682743, y: 0.6615594, z: 1}
+  m_LocalPosition: {x: -10.13, y: 1.86, z: -0.04376861}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1627177908658966495
+--- !u!212 &8681870959701151546
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157500348725046892}
+  m_GameObject: {fileID: 4727995862593462671}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,46 +86,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3161581355125295122
+--- !u!114 &5594750369542463122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157500348725046892}
+  m_GameObject: {fileID: 4727995862593462671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 789611975e0b7fd4da6d1ae418c27a33, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cb40809a2c24e04d9bc04427a4e4ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move_Speed: 1.1
---- !u!114 &5851847413184567353
+  Health: 5
+  MaxHealth: 5
+  MoveSpeed: 5
+  Exp: 5
+  Level: 5
+--- !u!114 &497797191723492752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157500348725046892}
+  m_GameObject: {fileID: 4727995862593462671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aef53e391d6e354f8ed1f102ab44e75, type: 3}
+  m_Script: {fileID: 11500000, guid: 554c2e3def711954ca6edab3db56b501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown_: 3
-  Value_Cooldown: 3
---- !u!114 &7810985894488677007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157500348725046892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aabd6be5ffe77374f870ef7a3c75071c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Atack_Damage: 5
-  Atack_Speed: 5
-  Hp_: 12
-  Hp_Max: 12
+  Move_Speed: 1
+  Stun_Duration: 3
+  Attack_Cooldown: 6

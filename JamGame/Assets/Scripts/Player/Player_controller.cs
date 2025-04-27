@@ -12,7 +12,7 @@ namespace Game.Player
     {
         internal Humanoid humanoid;
 
-        private bool Can_move;
+        public bool Can_move;
         private bool Can_attack;
         private bool Can_dance;
 
