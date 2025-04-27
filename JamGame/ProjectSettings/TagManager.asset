@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Arvore
+  - Alvo
+  - Coelho
+  - Toca
   layers:
   - Default
   - TransparentFX
