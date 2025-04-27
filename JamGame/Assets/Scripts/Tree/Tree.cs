@@ -1,3 +1,4 @@
+using Game.Entitys;
 using Game.HUD;
 using Game.Humanoids;
 using System.Collections;
@@ -36,11 +37,13 @@ namespace Game.MainTree
 
         #region Functions
 
-        private void Drop_fruit()
+        private GameObject Drop_fruit(Vector2 pos)
         {
             GameObject fruit = Resources.Load("Prefabs/Fruit") as GameObject;
 
-            Instantiate(fruit, Vector3.one, Quaternion.identity);
+            Instantiate(fruit, pos, Quaternion.identity);
+        
+            return fruit;
         }
 
         private IEnumerator Drop_fruit_routine()
@@ -49,7 +52,8 @@ namespace Game.MainTree
             {
                 yield return new WaitForSeconds(Fruit_drop_interval);
 
-                Drop_fruit();
+                GameObject new_fruit = Drop_fruit(new Vector2(transform.position.x + Random.Range(-2f, 2f), transform.position.y + Random.Range(-2f, 2f)));
+                new_fruit.GetComponent<Entity>().Configure(Entity.Entity_type.Fruit, Random.Range(10, 15));
             }
         }
 

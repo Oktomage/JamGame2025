@@ -13,12 +13,28 @@ namespace Game.Entitys
         public Entity_type type;
         public bool Collectable;
 
+        [Space]
+        public float Exp_value;
+
+        private void Awake()
+        {
+            //Set
+            Collectable = true;
+        }
+
         private void Update()
         {
             if(Collectable)
             {
                 Try_follow_player();
             }
+        }
+
+        public void Configure(Entity_type tp, float xp_vl)
+        {
+            //Set
+            type = tp;
+            Exp_value = xp_vl;
         }
 
         private void Try_follow_player()
@@ -51,7 +67,7 @@ namespace Game.Entitys
             {
                 case Entity_type.Fruit:
                     //Set
-                    player.GetComponent<Humanoid>().Gain_exp(Random.Range(25,50));
+                    player.GetComponent<Humanoid>().Gain_exp(Exp_value);
                     break;
             }
 

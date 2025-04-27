@@ -1,5 +1,7 @@
+using Game.Audios;
 using Game.Events;
 using Game.HUD;
+using Game.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +21,21 @@ namespace Game.Humanoids
         //Components
         public Rigidbody2D Rigidbody { get; internal set; }
         internal Health_bar health_bar;
+        public SpriteRenderer Render { get; internal set; }
+
+        private Material Default_material;
+        private Material Hit_effect_material;
 
         private void Awake()
         {
             if (TryGetComponent(out Rigidbody2D rb))
             {
                 Rigidbody = rb;
+            }
+
+            if(TryGetComponent(out SpriteRenderer spt))
+            {
+                Render = spt;
             }
 
             //Set
@@ -41,6 +52,10 @@ namespace Game.Humanoids
             {
                 Create_health_bar();
             }
+
+            //Set
+            Default_material = Render?.material;
+            Hit_effect_material = Resources.Load<Material>("Materials/Hit_effect_material");
         }
 
         private void Die()
@@ -59,10 +74,25 @@ namespace Game.Humanoids
             //Set
             Health -= dmg;
 
+            StartCoroutine(Hit_effect());
+
             if(Health <= 0)
             {
                 Die();
             }
+        }
+
+        private IEnumerator Hit_effect()
+        {
+            Color default_color = Render.color;
+
+            Render.material = Hit_effect_material;
+            Render.color = Color.white;
+
+            yield return new WaitForSeconds(0.1f);
+
+            Render.material = Default_material;
+            Render.color = default_color;
         }
 
         private void Level_up()
@@ -70,7 +100,14 @@ namespace Game.Humanoids
             //Set
             Level += 1;
 
-            Events_controller.Player_level_up.Invoke();
+            //Audio
+            Audio_controller.Play_audio("Level up_2", 0.3f);
+
+            //Events
+            if(this.gameObject.GetComponent<Player_controller>())
+            {
+                Events_controller.Player_level_up.Invoke();
+            }
         }
 
         internal void Gain_exp(float xp)
@@ -78,11 +115,17 @@ namespace Game.Humanoids
             //Set
             Exp += xp;
 
-            if(Exp >= 100)
+            if (Exp >= 100)
             {
                 Exp -= 100;
 
                 Level_up();
+            }
+
+            //Events
+            if (this.gameObject.GetComponent<Player_controller>())
+            {
+                Events_controller.Player_gained_exp.Invoke();
             }
         }
 

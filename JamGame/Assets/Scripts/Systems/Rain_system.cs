@@ -47,7 +47,7 @@ namespace Game.Systems
             new_drop.AddComponent<SpriteRenderer>();
             new_drop.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/Square");
             new_drop.GetComponent<SpriteRenderer>().color = Color.blue;
-            new_drop.GetComponent<SpriteRenderer>().sortingLayerID = 10;
+            new_drop.GetComponent<SpriteRenderer>().sortingOrder = 10;
 
             return new_drop;
         }
