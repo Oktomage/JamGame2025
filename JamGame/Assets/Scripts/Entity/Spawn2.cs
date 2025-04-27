@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawn2 : MonoBehaviour
 {
     public List<GameObject> objetosParaSpawnar;
     public int indiceDoObjeto = 0;
@@ -47,6 +46,3 @@ public class Spawner : MonoBehaviour
         tempoProximoSpawn = Time.time + Mathf.Max(0.1f, intervaloAleatorio);
     }
 }
-
-
-
