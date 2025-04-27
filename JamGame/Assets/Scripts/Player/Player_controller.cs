@@ -13,16 +13,21 @@ namespace Game.Player
         internal Humanoid humanoid;
 
         private bool Can_move;
-        private bool Dancing;
+        private bool Can_attack;
+        private bool Can_dance;
+
+        private Animator Anim;
 
         private void Awake()
         {
             //Get
             humanoid = this.gameObject.GetComponent<Humanoid>();
+            Anim = this.gameObject.GetComponent<Animator>();
 
             //Set
             Can_move = true;
-            Dancing = false;
+            Can_attack = true;
+            Can_dance = true;
         }
 
         private void Update()
@@ -34,13 +39,13 @@ namespace Game.Player
             }
 
             //Attack
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0) && Can_attack)
             {
                 Melee_wimp_attack(1, 2, 1);
             }
 
             //Specials
-            else if (Input.GetKeyDown(KeyCode.F) && !Dancing)
+            else if (Input.GetKeyDown(KeyCode.F) && Can_dance)
             {
                 StartCoroutine(Rain_dance());
             }
@@ -67,6 +72,9 @@ namespace Game.Player
             //Filter
             if(colls.Length > 0)
             {
+                StartCoroutine(Force_animation("Whip_attacking", 0.3f));
+                StartCoroutine(Whip_attack_dealy(0.3f));
+
                 foreach (Collider2D coll in colls)
                 {
                     if (coll.gameObject.GetComponent<Humanoid>() && coll.gameObject != this.gameObject)
@@ -98,11 +106,20 @@ namespace Game.Player
             Audio_controller.Play_audio("Basic Attack");
         }
 
+        private IEnumerator Whip_attack_dealy(float time)
+        {
+            Can_attack = false;
+
+            yield return new WaitForSeconds(time);
+
+            Can_attack = true;
+        }
+
         private IEnumerator Rain_dance()
         {
             //Set
             Can_move = false;
-            Dancing = true;
+            Can_dance = false;
 
             Events_controller.Rain_dance_event.Invoke();
 
@@ -112,7 +129,20 @@ namespace Game.Player
 
             //Set
             Can_move = true;
-            Dancing = false;
+            Can_dance = true;
+        }
+
+        #endregion
+
+        #region Anim
+
+        private IEnumerator Force_animation(string paramter_name, float time)
+        {
+            Anim.SetBool(paramter_name, true);
+
+            yield return new WaitForSeconds(time);
+
+            Anim.SetBool(paramter_name, false);
         }
 
         #endregion

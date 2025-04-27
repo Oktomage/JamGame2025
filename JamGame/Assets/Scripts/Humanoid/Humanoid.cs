@@ -1,3 +1,4 @@
+using Game.Events;
 using Game.HUD;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,6 +43,17 @@ namespace Game.Humanoids
             }
         }
 
+        private void Die()
+        {
+            //Events
+            if(this.gameObject.GetComponent<Tree>())
+            {
+                Events_controller.Tree_died.Invoke();
+            }
+
+            Destroy(this.gameObject);
+        }
+
         internal void Take_damage(float dmg)
         {
             //Set
@@ -49,7 +61,7 @@ namespace Game.Humanoids
 
             if(Health <= 0)
             {
-                Destroy(this.gameObject);
+                Die();
             }
         }
 
@@ -57,12 +69,14 @@ namespace Game.Humanoids
         {
             //Set
             Level += 1;
+
+            Events_controller.Player_level_up.Invoke();
         }
 
         internal void Gain_exp(float xp)
         {
             //Set
-            Exp -= xp;
+            Exp += xp;
 
             if(Exp >= 100)
             {

@@ -1,3 +1,4 @@
+using Game.Humanoids;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +45,16 @@ namespace Game.Entitys
 
         private void Collect()
         {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            switch (type)
+            {
+                case Entity_type.Fruit:
+                    //Set
+                    player.GetComponent<Humanoid>().Gain_exp(Random.Range(25,50));
+                    break;
+            }
+
             Destroy(this.gameObject);
         }
     }

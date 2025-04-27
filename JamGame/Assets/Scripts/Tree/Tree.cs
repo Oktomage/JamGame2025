@@ -1,9 +1,12 @@
+using Game.HUD;
+using Game.Humanoids;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Tree
+namespace Game.MainTree
 {
+    [RequireComponent (typeof (Humanoid))]
     public class Tree : MonoBehaviour
     {
         [Header("Configs")]
@@ -11,6 +14,14 @@ namespace Game.Tree
         public float Growth_factor;
         [Range(0f, 20f)]
         public float Fruit_drop_interval;
+
+        private Humanoid humanoid;
+
+        private void Awake()
+        {
+            //Set
+            humanoid = this.gameObject.GetComponent<Humanoid>();
+        }
 
         private void Start()
         {
