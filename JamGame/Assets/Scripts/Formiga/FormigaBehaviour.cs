@@ -1,3 +1,4 @@
+using Game.Humanoids;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,14 @@ public class FormigaBehaviour : MonoBehaviour
     public float Cooldown_;
     public float Cooldown_value;
 
-    private EntityStats entity;
+    Humanoid HU;
+   
     private ArvoreStatsHP arvoreStats;
 
     private void Start()
     {
-        entity = GetComponent<EntityStats>();
+        HU = gameObject.GetComponent<Humanoid>();
+
         arvoreStats = Arvore.GetComponent<ArvoreStatsHP>();
     }
 
@@ -34,7 +37,7 @@ public class FormigaBehaviour : MonoBehaviour
         }
         else if (Dist <= 1.3f)
         {
-            arvoreStats.Hp_Arvore -= entity.Atack_Damage;
+            arvoreStats.Hp_Arvore -= HU.Atack_Damage;
             Cooldown_ = Cooldown_value;
         }
     }

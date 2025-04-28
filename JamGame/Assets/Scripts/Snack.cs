@@ -1,3 +1,4 @@
+using Game.Humanoids;
 using Game.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +7,21 @@ using UnityEngine;
 public class Snack : MonoBehaviour
 {
 
-    public float Move_Speed;
+    
     public float Stun_Duration = 2f; 
     public float Attack_Cooldown = 5f; 
 
     private float currentCooldown;
     private GameObject player;
     private Player_controller playerController;
+    Humanoid HU;
 
     private void Start()
     {
+
+        HU = gameObject.GetComponent<Humanoid>();
+
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<Player_controller>();
         currentCooldown = Attack_Cooldown; 
@@ -23,7 +29,7 @@ public class Snack : MonoBehaviour
 
     void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Move_Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, HU.MoveSpeed * Time.deltaTime);
     }
 
     private void Update()

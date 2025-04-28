@@ -6,7 +6,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public List<GameObject> objetosParaSpawnar;
-    public int indiceDoObjeto = 0;
     public float intervaloDeSpawn = 2f;
     public float variacaoIntervalo = 1f;
     public Vector2 areaDeSpawnMin;
@@ -23,14 +22,16 @@ public class Spawner : MonoBehaviour
     {
         if (Time.time >= tempoProximoSpawn)
         {
-            SpawnarObjetoEmPosicaoAleatoria();
+            SpawnarObjetoAleatorio();
             CalcularProximoSpawn();
         }
     }
 
-    void SpawnarObjetoEmPosicaoAleatoria()
+    void SpawnarObjetoAleatorio()
     {
-        if (objetosParaSpawnar.Count == 0 || indiceDoObjeto >= objetosParaSpawnar.Count) return;
+        if (objetosParaSpawnar.Count == 0) return;
+
+        int indiceAleatorio = Random.Range(0, objetosParaSpawnar.Count);
 
         Vector3 posicaoAleatoria = new Vector3(
             Random.Range(areaDeSpawnMin.x, areaDeSpawnMax.x),
@@ -38,7 +39,7 @@ public class Spawner : MonoBehaviour
             0
         );
 
-        Instantiate(objetosParaSpawnar[indiceDoObjeto], posicaoAleatoria, Quaternion.identity);
+        Instantiate(objetosParaSpawnar[indiceAleatorio], posicaoAleatoria, Quaternion.identity);
     }
 
     void CalcularProximoSpawn()
@@ -47,6 +48,5 @@ public class Spawner : MonoBehaviour
         tempoProximoSpawn = Time.time + Mathf.Max(0.1f, intervaloAleatorio);
     }
 }
-
 
 

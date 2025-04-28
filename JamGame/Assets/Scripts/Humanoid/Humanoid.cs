@@ -17,6 +17,11 @@ namespace Game.Humanoids
         public float MoveSpeed;
         public float Exp;
         public int Level;
+        public float Atack_Damage;
+
+
+
+
 
         //Components
         public Rigidbody2D Rigidbody { get; internal set; }

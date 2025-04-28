@@ -1,3 +1,4 @@
+using Game.Humanoids;
 using Game.Player;
 using JetBrains.Annotations;
 using System.Collections;
@@ -8,6 +9,13 @@ public class Javali : MonoBehaviour
 {
 
     public float Move;
+
+
+    private void Start()
+    { 
+
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

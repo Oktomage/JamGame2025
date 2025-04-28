@@ -10,11 +10,15 @@ namespace Game.UI
 {
     public class UI_controller : MonoBehaviour
     {
+        
+
         [Header("Elements")]
         public TextMeshProUGUI TLevel;
         public TextMeshProUGUI TExp;
 
         private GameObject Player;
+
+      
 
         private void Awake()
         {
@@ -24,6 +28,8 @@ namespace Game.UI
 
         private void Start()
         {
+            
+
             //Get
             GameObject plr = GameObject.FindGameObjectWithTag("Player");
             Player = plr;
