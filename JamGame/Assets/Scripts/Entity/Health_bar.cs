@@ -9,6 +9,9 @@ namespace Game.HUD
     {
         [Header("Configs")]
         public GameObject Bar;
+
+        public SpriteRenderer Bar_render;
+        public SpriteRenderer Background_render;
         public Humanoid humanoid;
 
         private void Update()
@@ -37,7 +40,22 @@ namespace Game.HUD
 
         private void Update_bar()
         {
-            Bar.transform.localScale = new Vector3(humanoid.Health / humanoid.MaxHealth, Bar.transform.localScale.y, Bar.transform.localScale.z);
+            float scale = humanoid.Health / humanoid.MaxHealth;
+        
+            if(scale != 1)
+            {
+                //Set
+                Bar_render.enabled = true;
+                Background_render.enabled = true;
+
+                Bar.transform.localScale = new Vector3(scale, Bar.transform.localScale.y, Bar.transform.localScale.z);
+            }
+            else
+            {
+                //Set
+                Bar_render.enabled = false;
+                Background_render.enabled = false;
+            }
         }
     }
 }

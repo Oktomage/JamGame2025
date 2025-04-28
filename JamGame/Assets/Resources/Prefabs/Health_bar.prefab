@@ -247,4 +247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bar: {fileID: 5502489058643702723}
+  Bar_render: {fileID: 8618845229231122858}
+  Background_render: {fileID: 193221725446995637}
   humanoid: {fileID: 0}

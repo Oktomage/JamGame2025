@@ -1,4 +1,5 @@
 using Game.Audios;
+using Game.Entitys;
 using Game.Events;
 using Game.HUD;
 using Game.Player;
@@ -65,8 +66,21 @@ namespace Game.Humanoids
 
         private void Die()
         {
+            //Drop fruit
+            GameObject Drop_fruit(Vector2 pos)
+            {
+                GameObject fruit = Resources.Load("Prefabs/Fruit") as GameObject;
+
+                Instantiate(fruit, pos, Quaternion.identity);
+
+                return fruit;
+            }
+
+            GameObject new_fruit = Drop_fruit(transform.position);
+            new_fruit.GetComponent<Entity>().Configure(Entity.Entity_type.Fruit, Random.Range(10, 15));
+
             //Events
-            if(this.gameObject.GetComponent<Tree>())
+            if (this.gameObject.GetComponent<Tree>())
             {
                 Events_controller.Tree_died.Invoke();
             }
@@ -108,9 +122,12 @@ namespace Game.Humanoids
             //Audio
             Audio_controller.Play_audio("Level up_2", 0.3f);
 
-            //Events
             if(this.gameObject.GetComponent<Player_controller>())
             {
+                //Set
+                Render.color = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+                //Events
                 Events_controller.Player_level_up.Invoke();
             }
         }

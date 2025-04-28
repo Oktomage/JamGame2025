@@ -15,6 +15,8 @@ namespace Game.MainTree
         public float Growth_factor;
         [Range(0f, 20f)]
         public float Fruit_drop_interval;
+        [Range(1, 5f)]
+        public float Max_size;
 
         private Humanoid humanoid;
 
@@ -32,7 +34,10 @@ namespace Game.MainTree
         private void Update()
         {
             //Set
-            transform.localScale = transform.localScale + (transform.localScale * Growth_factor * Time.deltaTime);
+            if(transform.localScale.x < Max_size)
+            {
+                transform.localScale = transform.localScale + (transform.localScale * Growth_factor * Time.deltaTime);
+            }
         }
 
         #region Functions
